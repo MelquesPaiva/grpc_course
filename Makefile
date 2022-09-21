@@ -50,7 +50,7 @@ $(project):
 	@${CHECK_DIR_CMD}
 	protoc -I$@/${PROTO_DIR} --go_opt=module=${PACKAGE} --go_out=. --go-grpc_opt=module=${PACKAGE} --go-grpc_out=. $@/${PROTO_DIR}/*.proto
 
-	mv ${PACKAGE}/calculator/${PROTO_DIR}/*pb.go calculator/${PROTO_DIR}/
+	mv ${PACKAGE}/greet/${PROTO_DIR}/*pb.go greet/${PROTO_DIR}/
 
 	go build -o ${BIN_DIR}/$@/${SERVER_BIN} ./$@/${SERVER_DIR}
 	go build -o ${BIN_DIR}/$@/${CLIENT_BIN} ./$@/${CLIENT_DIR}
