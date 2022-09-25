@@ -23,7 +23,7 @@ func main() {
 	defer conn.Close()
 
 	svc := pb.NewCalculatorServiceClient(conn)
-	primeNumber(svc)
+	average(svc)
 }
 
 func sumValue(svc pb.CalculatorServiceClient) {
