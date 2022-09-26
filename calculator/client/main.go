@@ -23,7 +23,7 @@ func main() {
 	defer conn.Close()
 
 	svc := pb.NewCalculatorServiceClient(conn)
-	average(svc)
+	max(svc)
 }
 
 func sumValue(svc pb.CalculatorServiceClient) {

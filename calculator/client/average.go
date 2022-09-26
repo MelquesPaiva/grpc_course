@@ -10,16 +10,16 @@ import (
 func average(svc pb.CalculatorServiceClient) {
 	log.Println("average was invoke")
 
+	stream, err := svc.Average(context.Background())
+	if err != nil {
+		log.Fatalf("Error while calling average: %v", err)
+	}
+
 	reqs := []*pb.AverageRequest{
 		{Value: 1},
 		{Value: 4},
 		{Value: 7},
 		{Value: 2},
-	}
-
-	stream, err := svc.Average(context.Background())
-	if err != nil {
-		log.Fatalf("Error while calling average: %v", err)
 	}
 
 	for _, req := range reqs {
