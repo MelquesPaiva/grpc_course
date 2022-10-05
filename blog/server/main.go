@@ -11,6 +11,7 @@ import (
 
 	pb "github.com/MelquesPaiva/grpc-course/blog/proto"
 	"github.com/MelquesPaiva/grpc-course/blog/server/db"
+	"github.com/golang/protobuf/ptypes/empty"
 )
 
 var collection *mongo.Collection
@@ -18,6 +19,14 @@ var collection *mongo.Collection
 const (
 	port = ":50053"
 )
+
+type CrudInterface interface {
+	CreateBlog(ctx context.Context, blog *pb.Blog) (*pb.BlogId, error)
+	DeleteBlog(ctx context.Context, blogId *pb.BlogId) (*empty.Empty, error)
+	ListBlogs(in *empty.Empty, stream pb.BlogService_ListBlogsServer) error
+	UpdateBlog(ctx context.Context, blog *pb.Blog) (*empty.Empty, error)
+	ReadBlog(ctx context.Context, blog *pb.BlogId) (*pb.Blog, error)
+}
 
 type Server struct {
 	pb.BlogServiceServer
